@@ -1,0 +1,51 @@
+table TimeIntelligence
+	lineageTag: d35e354c-94a9-445c-99d7-be2fc898b38f
+
+	column TimeIntelligence
+		lineageTag: 6ca4318c-ceb0-4a28-948b-173cfdbec324
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'TimeIntelligence Order'
+
+		relatedColumnDetails
+			groupByColumn: 'TimeIntelligence Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TimeIntelligence Fields'
+		isHidden
+		lineageTag: e1adf218-b0cf-4df6-b63f-9f265bbffbf4
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'TimeIntelligence Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TimeIntelligence Order'
+		isHidden
+		formatString: 0
+		lineageTag: f5334a15-a462-4f21-aa20-d210067fc6e4
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TimeIntelligence = calculated
+		mode: import
+		source =
+				{
+				    ("Fiscal Year", NAMEOF('Calendar'[Fiscal Year]), 0),
+				    ("Fiscal Year Quarter", NAMEOF('Calendar'[Fiscal Year Quarter]), 1),
+				    ("Month", NAMEOF('Calendar'[Year Month]), 2),
+				    ("Day of Week Number", NAMEOF('Calendar'[Day of Week]), 3),
+				    ("Date", NAMEOF('Calendar'[Date]), 4)
+				}
+
+	annotation PBI_Id = cb0808074d4e4aef85839e2824a6111e
+

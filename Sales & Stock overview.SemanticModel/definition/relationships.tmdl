@@ -1,0 +1,94 @@
+relationship e83afbe8-dce0-822b-fee9-53b4c985b390
+	fromColumn: 'INWARD & OUTWARD'.Uid
+	toColumn: ArticleMaster.Uid
+
+relationship bee3ec39-66f2-de18-61f8-2ac247014154
+	fromColumn: OBS_sheet.Uid
+	toColumn: ArticleMaster.Uid
+
+relationship 293156ad-9f45-fba3-fca9-a283b9183905
+	fromColumn: 'INWARD & OUTWARD'.'Transaction type'
+	toColumn: TransactionType.type
+
+relationship 7a7a44a5-b5b4-4835-98cb-0beba1c0398d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'INWARD & OUTWARD'.MaxSaleDate
+	toColumn: LocalDateTable_7edc6a93-bd7e-45f9-aef3-05d82ebd2a2f.Date
+
+relationship af454fb7-e0c3-c529-827a-5e499217bc72
+	isActive: false
+	fromColumn: ArticleMaster.'Size Name'
+	toColumn: SizeMaster.'Size Name'
+
+relationship 98b290a0-e96d-8378-0bc5-372199dcfedb
+	fromColumn: ArticleMaster.sizesetid
+	toColumn: 'Size Set'.sizesetid
+
+relationship c51658d9-428e-dbe3-20ee-1bb95e69f3b1
+	fromColumn: 'INWARD & OUTWARD'.PartyMasterName
+	toColumn: PartyMaster.PartyMasterName
+
+relationship 1a1be554-afb0-5be9-de58-59841be291b1
+	fromColumn: 'INWARD & OUTWARD'.AccountType
+	toColumn: AccountType.'Account Type'
+
+relationship fe156650-080e-496b-9c22-b921cb2cb4e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Eoss Scheme Name'.'Transaction Date'
+	toColumn: LocalDateTable_53c0b120-c822-47b9-8b63-2d04f93fadf8.Date
+
+relationship abcc2595-f8a4-4260-b7e3-f4ddc6735d88
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Quickbill.RefDocDate
+	toColumn: LocalDateTable_e6cd645b-8ed9-4e80-8ad8-9c7b3e81ecef.Date
+
+relationship d980760f-49aa-4bea-a463-9e01db7adfe3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Quickbill.OrgDocDate
+	toColumn: LocalDateTable_33ebb1e8-0ec7-4028-9ba7-c52fee35694e.Date
+
+relationship a8add4e4-0a97-4adf-a698-cb66ea8f3818
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Quickbill.TranDateTime
+	toColumn: LocalDateTable_08d8839f-2b5a-41d5-9718-e894708771f6.Date
+
+relationship 10ca914c-8db0-57c9-8a2c-21dd58fb014f
+	fromColumn: 'INWARD & OUTWARD'.'Transaction Date'
+	toColumn: Calendar.Date
+
+relationship 701d5596-2f10-a984-3334-9c4224ce5aed
+	isActive: false
+	fromColumn: OBS_sheet.OpeningDate
+	toColumn: Calendar.Date
+
+relationship e8784305-d8fe-b746-df84-89e6af6460e8
+	isActive: false
+	fromColumn: OBS_sheet.ClosingDate
+	toColumn: Calendar.Date
+
+relationship 2bfee23f-6ae3-b014-f06d-f428627eb357
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Overview Matrix'.Sort_id
+	toColumn: Calendar.'Fiscal Month Number'
+
+relationship 65ecb1bc-2d65-397e-f575-3b42bbcea4fb
+	fromColumn: Quickbill.VoucherDate
+	toColumn: Calendar.Date
+
+relationship f26005d3-b2c0-5024-2711-e7d5befcf4be
+	fromColumn: Quickbill.WizappCompanyName
+	toColumn: LocationMaster.LocationName
+
+relationship 3bf59610-153f-5df8-95f2-cac3f3130544
+	fromColumn: Quickbill.Uid
+	toColumn: ArticleMaster.Uid
+
+relationship AutoDetected_9f06fe97-6735-4f7c-81c3-355fcee820ca
+	fromColumn: OBS_sheet.'Location Id'
+	toColumn: LocationMaster.Locationid
+
+relationship 8d030457-91fb-fa21-a95b-9e5fa8ae6a2a
+	fromColumn: 'INWARD & OUTWARD'.'Transaction Location Id'
+	toColumn: LocationMaster.Locationid
+

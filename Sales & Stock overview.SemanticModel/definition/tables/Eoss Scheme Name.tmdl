@@ -1,0 +1,81 @@
+table 'Eoss Scheme Name'
+	lineageTag: 1e2a4fb5-83d1-43fa-819d-f40d4f47fb52
+
+	column 'Transaction type'
+		dataType: string
+		lineageTag: 9057f49f-4e17-402d-af4e-980b2098f64f
+		summarizeBy: none
+		sourceColumn: Transaction type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Code w/o Batch'
+		dataType: string
+		lineageTag: b20405f2-9995-4140-b326-ca5c406cc097
+		summarizeBy: none
+		sourceColumn: Item Code w/o Batch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 87e2f0fb-f5ed-44a3-a107-faa58056f06b
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		variation Variation
+			isDefault
+			relationship: fe156650-080e-496b-9c22-b921cb2cb4e7
+			defaultHierarchy: LocalDateTable_53c0b120-c822-47b9-8b63-2d04f93fadf8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Transaction No'
+		dataType: string
+		lineageTag: 463a3ae9-eea3-4601-ad81-4a66a3ac48c3
+		summarizeBy: none
+		sourceColumn: Transaction No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Eoss Scheme Name'
+		dataType: string
+		lineageTag: eacb6b8b-c7c0-4e71-b054-6fbaaa36ca1a
+		summarizeBy: none
+		sourceColumn: Eoss Scheme Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: ac701d3c-a66f-4dc4-bad6-d63637321644
+		summarizeBy: sum
+		sourceColumn: Transaction Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Eoss Scheme Name' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"cf66f112-ec99-4e55-a781-eec95e0afb50" = Source{[workspaceId="cf66f112-ec99-4e55-a781-eec95e0afb50"]}[Data],
+				    #"97ce1f31-9b8c-49b1-8b23-da6a16336422" = #"cf66f112-ec99-4e55-a781-eec95e0afb50"{[dataflowId="97ce1f31-9b8c-49b1-8b23-da6a16336422"]}[Data],
+				    #"Eoss Scheme Name1" = #"97ce1f31-9b8c-49b1-8b23-da6a16336422"{[entity="Eoss Scheme Name"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Eoss Scheme Name1",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",4),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Transaction type", type text}, {"Item Code w/o Batch", type text}, {"Transaction Date", type date}, {"Transaction No", type text}, {"Eoss Scheme Name", type text}, {"Transaction Quantity", Int64.Type}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type1",{{"Item Code w/o Batch", Text.Trim, type text}, {"Transaction No", Text.Trim, type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Trimmed Text", each ([Transaction type] = "Party Wholesale" or [Transaction type] = "Retail Sales"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

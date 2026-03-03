@@ -1,0 +1,48 @@
+table Ledgercontroller
+	lineageTag: ba4f89cf-3287-465b-b3a7-0932abb7bf35
+
+	column Ledgercontroller
+		lineageTag: a720738d-1799-4a05-9fb3-4ea1f64adbd0
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Ledgercontroller Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Ledgercontroller Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ledgercontroller Fields'
+		isHidden
+		lineageTag: 260ec1c7-1715-4a23-92d9-210f0c0dad8b
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Ledgercontroller Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ledgercontroller Order'
+		isHidden
+		formatString: 0
+		lineageTag: 59b6834d-e9ec-45a4-9dd4-d3a21d30e081
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Ledgercontroller = calculated
+		mode: import
+		source =
+				{
+				    ("Bill from", NAMEOF('LocationMaster'[Code]), 0),
+				    ("Bill to", NAMEOF('INWARD & OUTWARD'[PartyMasterName]), 1)
+				}
+
+	annotation PBI_Id = e9c47a9525cd4fba983d44357c777b03
+

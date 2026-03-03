@@ -1,0 +1,56 @@
+table 'Overview Matrix'
+	lineageTag: e09795fd-c629-4df7-8cbd-340f789e9369
+
+	column Sort_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b2e81fc-282c-462f-90ec-19821a1f69d4
+		summarizeBy: none
+		sourceColumn: Sort_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sORT_ID_ct
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f749e0f-7f75-4110-8706-e84d885dcd27
+		summarizeBy: sum
+		sourceColumn: sORT_ID_ct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calculation Type'
+		dataType: string
+		lineageTag: f33ad6c3-be9b-425f-a806-62999e07ce8b
+		summarizeBy: none
+		sourceColumn: Calculation Type
+		sortByColumn: sORT_ID_ct
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month NAME'
+		dataType: string
+		lineageTag: 0ab1a9ad-e358-4797-8966-99cde1db2431
+		summarizeBy: none
+		sourceColumn: Month NAME
+		sortByColumn: Sort_id
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Overview Matrix' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("dZJNa8JQEEX/igS6c1Fb7ceyVLoQtBShm+AiDaEUggk2Kfjva95bzL13xoVB7pmXmXcmZVksinn6fQzny3NTHYvDvCzuKH1rvlJ6T+m2OqV0SelLn9OV1J5T+sDdxtztUdI2pU/83vE7pc+U7ps+pYtbit/rIcd8u133l2O+3rqpc3z5P5HtqZ99Vu3YiBBlqEUZylGGivw5E+VmAV2emTTXD9QpI4EKSaNCkqkQlU56ds0w21etGhWEQgWhT0Go050ymzoGyHTIXGovUCmITAojkcLIozDUON18/fNbd+NxCD/PsACVhgUoNixAvVfeYJLjIUH1lQITHs8A2sMCkh9W0ArCClpEWIHrWGHBjazCQVyDg7gCB1F/cNLU+4FAewBNue8Juh0k1Y6SZkdJsaOod7rRaxeoJYBaCaBSAqhTTphKbg4aBZhC7gH6CJA6IqSNCCkjknQd/gE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Sort_id = _t, sORT_ID_ct = _t, #"Calculation Type" = _t, #"Month NAME" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Sort_id", Int64.Type}, {"sORT_ID_ct", Int64.Type}, {"Calculation Type", type text}, {"Month NAME", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,33 @@
+table AccountType
+	lineageTag: 7298cd24-79ef-4730-812e-021851849425
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: c88bd12d-3a2d-4bb6-82f2-07f70bca3b19
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Type'
+		dataType: string
+		lineageTag: ae4df40c-0dd9-4519-b1e2-029a8440f306
+		summarizeBy: none
+		sourceColumn: Account Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AccountType = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUQopSkxJVXBMTs4vzStRitWJVjICigalliRm5qAIGwOFvVMrEWKxAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [id = _t, #"Account Type" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"id", Int64.Type}, {"Account Type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

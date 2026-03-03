@@ -1,0 +1,43 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["INWARD & OUTWARD","OBS_sheet","LocationMaster","ArticleMaster","All_Measures","TransactionType","SizeMaster","Sizemerger","Size Set","SizeSetFilter","Eoss Scheme Name","Scheme Master","Overview Matrix","AccountType","Quickbill"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","TMDLView_Desktop","DevMode"]
+
+ref table 'INWARD & OUTWARD'
+ref table DateTableTemplate_3bfbd36a-a61a-4bb3-87eb-ae97c05974bf
+ref table OBS_sheet
+ref table LocationMaster
+ref table Calendar
+ref table ArticleMaster
+ref table All_Measures
+ref table TransactionType
+ref table LocalDateTable_7edc6a93-bd7e-45f9-aef3-05d82ebd2a2f
+ref table RowController
+ref table SizeMaster
+ref table Sizemerger
+ref table 'Size Set'
+ref table SizeSetFilter
+ref table 'Eoss Scheme Name'
+ref table 'Scheme Master'
+ref table PartyMaster
+ref table 'Overview Matrix'
+ref table AccountType
+ref table TimeIntelligence
+ref table Ledgercontroller
+ref table LocalDateTable_53c0b120-c822-47b9-8b63-2d04f93fadf8
+ref table Quickbill
+ref table LocalDateTable_e6cd645b-8ed9-4e80-8ad8-9c7b3e81ecef
+ref table LocalDateTable_33ebb1e8-0ec7-4028-9ba7-c52fee35694e
+ref table LocalDateTable_08d8839f-2b5a-41d5-9718-e894708771f6
+
+ref cultureInfo en-US
+

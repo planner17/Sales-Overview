@@ -1,0 +1,43 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "CloseResuflFilter",
+  "name": "bdf837a100658c3208c2",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "3367f93738c891c517ed",
+    "sections": {
+      "3367f93738c891c517ed": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "e9367d0c2e018806b5d0": {
+            "isHidden": true
+          },
+          "019cd4772e83730e9ce9": {
+            "isHidden": false
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

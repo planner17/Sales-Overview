@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "635a2fbaf7a371900ff9",
+  "position": {
+    "x": 108.57142857142858,
+    "y": 71.428571428571431,
+    "z": 0,
+    "height": 360,
+    "width": 924.28571428571433,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "LocationMaster"
+                    }
+                  },
+                  "Property": "Code"
+                }
+              },
+              "queryRef": "LocationMaster.Code",
+              "nativeQueryRef": "Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All_Measures"
+                    }
+                  },
+                  "Property": "SaleQty_Quickbill"
+                }
+              },
+              "queryRef": "All_Measures.SaleQty_Quickbill",
+              "nativeQueryRef": "SaleQty_Quickbill"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

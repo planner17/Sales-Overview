@@ -1,0 +1,238 @@
+table All_Measures
+	lineageTag: 1aa2f049-b6eb-4837-83a9-cb657817157c
+
+	measure SaleQty_wizzapp = ```
+			
+			
+			CALCULATE(SUM('INWARD & OUTWARD'[Transaction Quantity]),
+			                    TransactionType[type] in {"Party Wholesale", "Retail Sales"}) 
+			
+			
+			
+			// -- LA, SA Rule 
+			//         --Tranction type = "Party Wholesale"
+			
+			// -- Bramch Rule- Tranction type = {"Party Wholesale", "Retail Sales"}
+			
+			
+			// var _LASASale = CALCULATE(SUM('INWARD & OUTWARD'[Transaction Quantity]),
+			//                     TransactionType[type] in {"Party Wholesale"})  
+			
+			
+			// var _BranchSale = CALCULATE(SUM('INWARD & OUTWARD'[Transaction Quantity]),
+			//                     TransactionType[type] in {"Party Wholesale", "Retail Sales"})  
+			
+			// RETURN
+			//     IF(SELECTEDVALUE(LocationMaster[Code]) in {"LA", "SA"}, _LASASale, _BranchSale)
+			```
+		formatString: 0
+		displayFolder: Wizapp
+		lineageTag: b9d6c8cc-ab97-47a8-b62b-871af300337b
+
+	measure Closing =
+			
+			// CALCULATE(SUM(OBS_sheet[CBS Qty]), USERELATIONSHIP('Calendar'[Date], OBS_sheet[ClosingDate]))
+			SUM(OBS_sheet[CBS Qty])
+		formatString: #,0
+		displayFolder: Wizapp
+		lineageTag: 33b7d70d-7e91-4e58-a791-8a2565828fa3
+
+	measure 'Mrp Value_stock_wizzapp' =
+			
+			// CALCULATE(SUM(OBS_sheet[MRPValue]), USERELATIONSHIP('Calendar'[Date], OBS_sheet[ClosingDate]))
+			// SUM(OBS_sheet[MRPValue])
+			CALCULATE(SUM(OBS_sheet[MRPValue]), CROSSFILTER(LocationMaster[LocationID], 'INWARD & OUTWARD'[Transaction Location Id], Both))
+		formatString: "₹"\ #,0;#,0\ -"₹";"₹"\ #,0
+		displayFolder: Wizapp
+		lineageTag: 3f26ff20-aff0-4ca4-9a8e-5bee5d47f307
+
+		annotation PBI_FormatHint = {"currencyCulture":"as-IN"}
+
+	measure 'Net Sale_wizapp' = ```
+			
+			CALCULATE(SUM('INWARD & OUTWARD'[Transaction Value with GST]),
+			                    TransactionType[type] in {"Party Wholesale", "Retail Sales"}) 
+			
+			
+			```
+		displayFolder: Wizapp
+		lineageTag: 537542b8-9b31-4104-acd5-09f039e312d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FlatdiscountPecent = ```
+			
+			    // 1 - DIVIDE([netsale], [SaleMRP_Value])
+			    DIVIDE([SaleMRP_Value] - [Net Sale], [SaleMRP_Value]) 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Wizapp
+		lineageTag: a46a73fe-5198-4da1-a59e-c4b90ca15309
+
+	measure SaleMRP_Valuewizzapp = ```
+			
+			
+			CALCULATE(SUM('INWARD & OUTWARD'[Transaction Value at MRP]),
+			                    TransactionType[type] in {"Party Wholesale", "Retail Sales"}) 
+			    
+			```
+		formatString: 0
+		displayFolder: Wizapp
+		lineageTag: 7f907e33-2236-42d4-a8d8-6b9d96fcfb4b
+
+	measure FMC =
+			
+			var _monthcount = DATEDIFF(MIN('Calendar'[Date]), MAX('Calendar'[Date]),MONTH)
+			var _salemrpvalueavg = DIVIDE([SaleMRP_Value], _monthcount)
+			RETURN
+			DIVIDE([Mrp Value_stock], _salemrpvalueavg)
+		formatString: 0
+		displayFolder: Wizapp
+		lineageTag: 84a6c73a-357b-43bc-8eab-d851cff1fa7c
+
+	measure 'Contribution Diff' =
+			
+			
+			var _saleContdiff = DIVIDE(
+			    [SaleMRP_Value],
+			    CALCULATE(
+			        [SaleMRP_Value],
+			        ALLSELECTED(
+			            ArticleMaster[Brand Name],
+			            ArticleMaster[Section Name],
+			            ArticleMaster[Gender]
+			        )
+			    )
+			)
+			var _stockContdiff = DIVIDE(
+			    [Mrp Value_stock],
+			    CALCULATE(
+			        [Mrp Value_stock],
+			        ALLSELECTED(
+			            ArticleMaster[Brand Name],
+			            ArticleMaster[Section Name],
+			            ArticleMaster[Gender]
+			        )
+			    )
+			)
+			RETURN
+			_saleContdiff -  _stockContdiff
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Wizapp
+		lineageTag: 13d4430e-d1f3-4094-a35e-0ef76802117b
+
+	measure overViewMatrix = ```
+			
+			SWITCH (
+			    SELECTEDVALUE ( 'Overview Matrix'[Calculation Type] ),
+			    "Qty", [SaleQty],
+			    "MRP Value", [SaleMRP_Value],
+			    "Net Sale", [Net Sale],
+			    "Discount Value", [SaleMRP_Value] - [Net Sale],
+			    "Discount %", [FlatdiscountPecent],
+			    "Cont %",
+			        DIVIDE (
+			            [SaleMRP_Value],
+			            CALCULATE (
+			                [SaleMRP_Value],
+			                ALL ( 'INWARD & OUTWARD'[PartyMasterName] )
+			            )
+			        )
+			)
+			
+			```
+		displayFolder: Wizapp
+		lineageTag: f7201394-3455-4cc9-95fb-73f9fb28bafe
+
+		formatStringDefinition = ```
+				SWITCH (
+				    SELECTEDVALUE ( 'Overview Matrix'[Calculation Type] ),
+				    "Discount %", "0.00%",
+				    "Cont %", "0.00%",
+				    "Qty", "#,##0",
+				    "₹ #,##0"
+				)
+				
+				```
+
+	measure SaleQty_Quickbill = ```
+			
+			
+			CALCULATE(SUM(Quickbill[Qty]),
+			                    Quickbill[WizappTransactionType] in {"Party Wholesale", "Retail Sales"}) 
+			
+			```
+		lineageTag: 0a33c53b-81b9-4596-a377-c5dec8c8f0f2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SaleQty = [SaleQty_wizzapp] + [SaleQty_Quickbill]
+		lineageTag: 2e02f68f-0a23-436a-8441-1d49655601d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SaleMRP_Value_Quickbill = ```
+			
+			
+			CALCULATE(SUM(Quickbill[TotalValueMRP]),
+			                    Quickbill[WizappTransactionType] in {"Party Wholesale", "Retail Sales"}) 
+			    
+			```
+		lineageTag: de98c240-8849-4673-b59a-7c5724713854
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SaleMRP_Value = [SaleMRP_Valuewizzapp] + [SaleMRP_Value_Quickbill]
+		lineageTag: cc373ab3-e32b-4b97-a3f8-f43ff37653cd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Sale_Quickbill' = ```
+			
+			CALCULATE(SUM(Quickbill[NetAmount]),
+			                    Quickbill[WizappTransactionType] in {"Party Wholesale", "Retail Sales"}) 
+			```
+		lineageTag: da67ce47-d89d-4390-8dcf-463c4e8ea341
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Sale' = [Net Sale_wizapp] + [Net Sale_Quickbill]
+		lineageTag: d142a58f-73ac-4245-9f6f-80499316619d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Mrp Value_stock_Quickbill' =
+			
+			// CALCULATE(SUM(OBS_sheet[MRPValue]), USERELATIONSHIP('Calendar'[Date], OBS_sheet[ClosingDate]))
+			// SUM(OBS_sheet[MRPValue])
+			CALCULATE(SUM(OBS_sheet[MRPValue]), CROSSFILTER(LocationMaster[LocationName], Quickbill[WizappCompanyName], Both))
+		formatString: 0
+		lineageTag: 502e05f4-aef5-4e18-a9d4-8a7a01220f49
+
+	measure 'Mrp Value_stock' = ```
+			
+			    [Mrp Value_stock_Quickbill] + [Mrp Value_stock_wizzapp]
+			```
+		formatString: 0
+		lineageTag: 34d26737-aefe-4bc7-bd93-7a89e9df73df
+
+	measure filterout = ```
+			
+			    [SaleMRP_Value] + [Mrp Value_stock]
+			```
+		lineageTag: 6b714e07-bb20-4a1a-9e0a-61b449148133
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition All_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

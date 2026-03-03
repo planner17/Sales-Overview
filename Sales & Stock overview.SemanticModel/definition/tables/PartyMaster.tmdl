@@ -1,0 +1,20 @@
+table PartyMaster
+	lineageTag: e1dc20a2-ab62-496c-93a2-54a412c89418
+
+	column PartyMasterName
+		lineageTag: d83d9792-6ad1-4dbb-837f-7f1ae8d838bc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: INWARD & OUTWARD[PartyMasterName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PartyMaster = calculated
+		mode: import
+		source = ```
+				
+				            SUMMARIZE('INWARD & OUTWARD', 'INWARD & OUTWARD'[PartyMasterName])
+				```
+
+	annotation PBI_Id = 73b42bf06da8472d994c3174c914728d
+

@@ -1,0 +1,40 @@
+table LocationMaster
+	lineageTag: bd293602-d2a7-4e92-8d19-c34bae033791
+
+	column Code
+		dataType: string
+		lineageTag: 8f8a41e8-5bb7-4df4-a82b-00c31489f24f
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationName
+		dataType: string
+		lineageTag: e60772ac-d029-4100-98fd-c11281180033
+		summarizeBy: none
+		sourceColumn: LocationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Locationid
+		dataType: string
+		lineageTag: 078a6959-24ad-4eab-9230-e9c357fa4df8
+		summarizeBy: none
+		sourceColumn: Locationid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LocationMaster = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "wizapp_data", [Query="select * from locationmaster"]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"rnk"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

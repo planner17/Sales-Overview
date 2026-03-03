@@ -1,0 +1,349 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 593.74590299999966,
+            "y": 124.43121999999971
+          },
+          "nodeIndex": "INWARD & OUTWARD",
+          "nodeLineageTag": "13b4d141-810a-4d98-969d-76dac3a1c19d",
+          "size": {
+            "height": 325,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 306,
+            "y": 0
+          },
+          "nodeIndex": "LocationMaster",
+          "nodeLineageTag": "bd293602-d2a7-4e92-8d19-c34bae033791",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 91,
+            "y": 204
+          },
+          "nodeIndex": "OBS_sheet",
+          "nodeLineageTag": "8bf5c9d4-c811-499c-b1fa-6f310cd5c934",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1056.3029299999987,
+            "y": 266.19102799999825
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "21246b47-7ae3-47fd-bc8c-7d21f26ee74d",
+          "size": {
+            "height": 421.44512499999854,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 874.77156099999991,
+            "y": 470.4486839999995
+          },
+          "nodeIndex": "ArticleMaster",
+          "nodeLineageTag": "65f379ee-ccbe-4901-903d-565769e02054",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1983.7295149999989,
+            "y": 514.4969789999983
+          },
+          "nodeIndex": "All_Measures",
+          "nodeLineageTag": "1aa2f049-b6eb-4837-83a9-cb657817157c",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 1239.2929594183461,
+            "y": 0
+          },
+          "nodeIndex": "TransactionType",
+          "nodeLineageTag": "d6f59e96-bb8e-4f87-9d67-a296b40e5219",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 3699,
+            "y": 283.22434199999975
+          },
+          "nodeIndex": "RowController",
+          "nodeLineageTag": "4265763b-a735-4328-a6b0-3419df63aac8",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1727.6025490000179,
+            "y": 524.38205599999651
+          },
+          "nodeIndex": "SizeMaster",
+          "nodeLineageTag": "14f8ff1e-71d3-4083-94b2-6466a4ff87ac",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4653,
+            "y": 307.22434199999975
+          },
+          "nodeIndex": "Sizemerger",
+          "nodeLineageTag": "22a49cf2-c339-4eda-b5ef-eae08d99573f",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1441.6501341633527,
+            "y": 367.28956299999908
+          },
+          "nodeIndex": "Size Set",
+          "nodeLineageTag": "696204b9-5caf-4512-8b3a-5a903724e0cd",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4846,
+            "y": 307.22434199999975
+          },
+          "nodeIndex": "SizeSetFilter",
+          "nodeLineageTag": "1c72b77e-2a85-4f3d-b007-1d7eccdd0079",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5039,
+            "y": 247.22434199999975
+          },
+          "nodeIndex": "Eoss Scheme Name",
+          "nodeLineageTag": "1e2a4fb5-83d1-43fa-819d-f40d4f47fb52",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5323,
+            "y": 295.22434199999975
+          },
+          "nodeIndex": "Scheme Master",
+          "nodeLineageTag": "bd5a0d6e-bdec-4dce-8a4d-9138f6cd1989",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 553.30346799999779
+          },
+          "nodeIndex": "PartyMaster",
+          "nodeLineageTag": "e1dc20a2-ab62-496c-93a2-54a412c89418",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 946.61338516336127,
+            "y": 164.7551729999989
+          },
+          "nodeIndex": "Overview Matrix",
+          "nodeLineageTag": "e09795fd-c629-4df7-8cbd-340f789e9369",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 690.32741632669331,
+            "y": 138.18175799999909
+          },
+          "nodeIndex": "AccountType",
+          "nodeLineageTag": "7298cd24-79ef-4730-812e-021851849425",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5607,
+            "y": 300.6517339999989
+          },
+          "nodeIndex": "TimeIntelligence",
+          "nodeLineageTag": "d35e354c-94a9-445c-99d7-be2fc898b38f",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5891,
+            "y": 300.6517339999989
+          },
+          "nodeIndex": "Ledgercontroller",
+          "nodeLineageTag": "ba4f89cf-3287-465b-b3a7-0932abb7bf35",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1581.9327031633604,
+            "y": 0
+          },
+          "nodeIndex": "Quickbill",
+          "nodeLineageTag": "35f743f0-2be0-4bfc-88d0-f096a5073da4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 56.447393005378125,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 542.33333206176758,
+            "y": 75
+          },
+          "nodeIndex": "Quickbill",
+          "nodeLineageTag": "35f743f0-2be0-4bfc-88d0-f096a5073da4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 27,
+            "y": 80
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "21246b47-7ae3-47fd-bc8c-7d21f26ee74d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 239.33333206176758,
+            "y": 0
+          },
+          "nodeIndex": "LocationMaster",
+          "nodeLineageTag": "bd293602-d2a7-4e92-8d19-c34bae033791",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1066.8888867696128,
+            "y": 175
+          },
+          "nodeIndex": "ArticleMaster",
+          "nodeLineageTag": "65f379ee-ccbe-4901-903d-565769e02054",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Quickbill",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

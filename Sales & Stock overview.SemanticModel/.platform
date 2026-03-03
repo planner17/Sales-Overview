@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Sales & Stock overview"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f125bfbf-fdd7-40e1-8dd8-bcc88c833e73"
+  }
+}

@@ -1,0 +1,32 @@
+table 'Scheme Master'
+	lineageTag: bd5a0d6e-bdec-4dce-8a4d-9138f6cd1989
+
+	column 'Old Scheme'
+		dataType: string
+		lineageTag: ad898466-c304-4110-9099-396dbf233e4e
+		summarizeBy: none
+		sourceColumn: Old Scheme
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Scheme'
+		dataType: string
+		lineageTag: 0d21b655-9abd-48c2-a9b5-26a317a751fb
+		summarizeBy: none
+		sourceColumn: New Scheme
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Scheme Master' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("lVTRbpswFP2Vq0h7q6ltbELegBGSZtFAI9E2dVXFUtpkYyFi0C1SP342JDRUNsl4iEA599x7zzn27e0gyJIS/M1vA+gQ/HRFOaKDq8HNHAU+mobyE4sfQhEdDu6uRMHcXYB/EwMxYbb82GLj5RGLLUTMBnsgX+XVtkQWzKot5eoKbJ2w1+Ow+1mV7U/wgdvih4harx0eDh00zKQztwFEDqJnJsPO7EKXe7d6otwwVPgRwrzGf95sy7SAdmW1iG+EaclV1HYr+amMrFdFrpldMzrpwA0VKUcm7khtgEMxmBgYBo5VJQwRq6u52Bt+nAtLa73dpwlmarRuRVrDx2Eco/+NgJclq58QFJuHZH8IpTARq5wliHJ1TT9avGHwqNAYPBMJRT0Gyff8OUUcC/vhfDgEhd9wTEzJMeG9yevv2JxpXbreUlAuKSQRq4k4fKswpha4JxvUd0rvjXJmpMaqfqN6Gew+FQ9xij+8n4IbRa/n15D5fqduiy9wr/cs1e08MiHn1jpBdKygoybWf8sigXid73ab7ROEj49pUd/f3hyNvyxQPI26ucONhRzjMAgg30JUFeCITwx50czere4c68N94S+DYD4Gz52AAyPxQLT8JMqiEHkTZcWiyLNsD0ItBwiXFbuquKiCgUNki4vAtkOZHtuuLnUSg9RbB3le/kmTQgqh3ZwfY+Itv5Jr4fbLC4hXes00NlP7aKBZB4TVAdGF4ojOqlJMs4Z4tU5/peJv8bS7dG0cqSr02Lt/", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Old Scheme" = _t, #"New Scheme" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Old Scheme", type text}, {"New Scheme", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
